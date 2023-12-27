@@ -22,6 +22,9 @@
 			<li aria-current={$page.url.pathname === '/box' ? 'page' : undefined}>
 				<a href="/box">BOX LIST</a>
 			</li>
+			<li aria-current={$page.url.pathname === '/cardonbox' ? 'page' : undefined}>
+				<a href="/cardonbox">CARD SEARCH</a>
+			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
