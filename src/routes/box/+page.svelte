@@ -43,6 +43,7 @@
                 changeBoxTH(itemchangemodel)
             }
             else{
+                document.getElementById('toastboxerr').classList.remove('d-none'); /* ต้องใส่ d-none เอาไว้ก่อนเนื่องด้วยมัน render จอเล็กแล้วมันทับ*/
                 var toast = new bootstrap.Toast(document.querySelector('.toast'));
                 toast.show();
             }
@@ -107,7 +108,7 @@
     
     
 
-    <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div class="toast-container position-fixed top-0 end-0 p-3 d-none" id="toastboxerr">
         <div class="toast align-items-center bg-danger text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
               <div class="toast-body">

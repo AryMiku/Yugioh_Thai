@@ -1,38 +1,31 @@
-# create-svelte
+# YU-GI-OH (ค้นหา BOX แปลไทย)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+![](https://img.shields.io/badge/Version-1.0-green)  
+![Svelte](https://img.shields.io/badge/svelte-%23f1413d.svg?style=for-the-badge&logo=svelte&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-## Creating a project
+ภาษานี้ถูกเขียนด้วย svelte และ bootstrap 5
 
-If you're seeing this, you've probably already done this step. Congrats!
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## อธิบาย Project
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+เป็นการรวมการ์ดแปลไทยของ YU-GI-OH ที่ทางเพจ [YugiThai4D](https://www.facebook.com/yugithai4d) จัดทำขึ้นมา ผมเลยนำมารวบรวมมาเอาไว้ให้ครับ
 
-## Developing
+## Feature ที่สามารถใช้ได้ในตอนนี้
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1.) ค้นหา BOX ตัวเลข 4 หลักว่าด้านในมีการ์ดอะไรได้บ้างครับ
 
-```bash
-npm run dev
+2.) ค้นหาการ์ดได้ว่าการ์ดใบนี้มีอยู่ใน BOX ไหนบ้างครับ
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Building (วิธีใช้งาน)
 
-## Building
-
-To create a production version of your app:
+หากต้องการ deploy ผลงานให้ใช้คำสั่ง
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+หากต้องการ run เพื่อเทสให้ใช้คำสั่ง
+```bash
+npm run dev
+```

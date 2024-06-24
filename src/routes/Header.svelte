@@ -32,7 +32,7 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
+		<a href="https://github.com/AryMiku/Yugioh_Thai">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>
@@ -121,6 +121,12 @@
 		letter-spacing: 0.1em;
 		text-decoration: none;
 		transition: color 0.2s linear;
+	}
+
+	@media (max-width: 600px) {
+		nav a {
+			font-size: 0.6rem;
+		}
 	}
 
 	a:hover {

@@ -11,7 +11,9 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>
+			เว็บไซต์นี้พัฒนาโดยใช้ <a href="https://kit.svelte.dev">svelte.kit</a> หากใครสนใจก็ลองเข้าไปดูได้ครับ
+		</p>
 	</footer>
 </div>
 
