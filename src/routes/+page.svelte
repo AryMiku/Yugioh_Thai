@@ -2,10 +2,32 @@
 	import { onMount } from 'svelte';
 
 	let log = []
+	let box_log_detail = {
+		month : [],
+		day : [],
+		all : []
+	}
+	let card_log_detail = {
+		month : [],
+		day : [],
+		all : []
+	}
 
 	onMount(async () => {
-		const res_log = await axios.get('https://api.arymiku.com/YGO/Select/Select_Log.php');
+		const [res_log, res_log_box] = await Promise.all([
+			axios.get('https://api.arymiku.com/YGO/Select/Select_Log.php'),
+			axios.get('https://api.arymiku.com/YGO/Select/Select_Log_CardBox.php')
+		]);
+
 		log = res_log.data;
+
+		["month", "day", "all"].forEach((group) => {
+    		box_log_detail[group] = res_log_box.data.box.filter(item => item.grouping === group);
+		});
+
+		["month", "day", "all"].forEach((group) => {
+    		card_log_detail[group] = res_log_box.data.card.filter(item => item.grouping === group);
+		});
 	});
 </script>
 
@@ -36,6 +58,113 @@
 			{/each}
 		</table>
 	</span>
+
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-12 col-md-6">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+					<li class="nav-item" role="presentation">
+					  <button class="nav-link active" id="box-log-today-tab" data-bs-toggle="tab" data-bs-target="#boxlogtoday" type="button" role="tab" aria-controls="boxlogtoday" aria-selected="true">Box นิยมวันนี้</button>
+					</li>
+					<li class="nav-item" role="presentation">
+					  <button class="nav-link" id="box-log-month-tab" data-bs-toggle="tab" data-bs-target="#boxlogmonth" type="button" role="tab" aria-controls="boxlogmonth" aria-selected="false">Box นิยมเดือนนี้</button>
+					</li>
+					<li class="nav-item" role="presentation">
+					  <button class="nav-link" id="box-log-all-tab" data-bs-toggle="tab" data-bs-target="#boxlogall" type="button" role="tab" aria-controls="boxlogall" aria-selected="false">Box นิยมทั้งหมด</button>
+					</li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="boxlogtoday" role="tabpanel" aria-labelledby="box-log-today-tab">
+					{#if box_log_detail.day.length == 0}
+						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
+					{:else}
+						{#each box_log_detail.day as bm}
+							<div class="image-wrapper me-2">
+								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<span class="badge-count">View {bm.seen}</span>
+							</div>
+						{/each}
+					{/if}
+					
+				</div>
+				<div class="tab-pane fade" id="boxlogmonth" role="tabpanel" aria-labelledby="box-log-month-tab">
+					{#if box_log_detail.day.length == 0}
+						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
+					{:else}
+						{#each box_log_detail.month as bm}
+							<div class="image-wrapper me-2">
+								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<span class="badge-count">View {bm.seen}</span>
+							</div>
+						{/each}
+					{/if}
+				</div>
+				<div class="tab-pane fade" id="boxlogall" role="tabpanel" aria-labelledby="box-log-all-tab">
+					{#if box_log_detail.day.length == 0}
+						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
+					{:else}
+						{#each box_log_detail.all as bm}
+							<div class="image-wrapper me-2">
+								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<span class="badge-count">View {bm.seen}</span>
+							</div>
+						{/each}
+					{/if}
+				</div>
+				</div>
+			</div>
+			<div class="col-12 col-md-6">
+				<ul class="nav nav-tabs" id="TabCardLog" role="tablist">
+					<li class="nav-item" role="presentation">
+					  <button class="nav-link active" id="card-log-today-tab" data-bs-toggle="tab" data-bs-target="#cardlogtoday" type="button" role="tab" aria-controls="cardlogtoday" aria-selected="true">Card นิยมวันนี้</button>
+					</li>
+					<li class="nav-item" role="presentation">
+					  <button class="nav-link" id="card-log-month-tab" data-bs-toggle="tab" data-bs-target="#cardlogmonth" type="button" role="tab" aria-controls="cardlogmonth" aria-selected="false">Card นิยมเดือนนี้</button>
+					</li>
+					<li class="nav-item" role="presentation">
+					  <button class="nav-link" id="card-log-all-tab" data-bs-toggle="tab" data-bs-target="#cardlogall" type="button" role="tab" aria-controls="cardlogall" aria-selected="false">Card นิยมทั้งหมด</button>
+					</li>
+				</ul>
+				<div class="tab-content" id="TabCardLogContent">
+				<div class="tab-pane fade show active" id="cardlogtoday" role="tabpanel" aria-labelledby="card-log-today-tab">
+					{#if box_log_detail.day.length == 0}
+						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
+					{:else}
+						{#each card_log_detail.day as bm}
+							<div class="image-wrapper me-2">
+								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<span class="badge-count">View {bm.seen}</span>
+							</div>
+						{/each}
+					{/if}
+				</div>
+				<div class="tab-pane fade" id="cardlogmonth" role="tabpanel" aria-labelledby="card-log-month-tab">
+					{#if box_log_detail.day.length == 0}
+						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
+					{:else}
+						{#each card_log_detail.month as bm}
+							<div class="image-wrapper me-2">
+								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<span class="badge-count">View {bm.seen}</span>
+							</div>
+						{/each}
+					{/if}
+				</div>
+				<div class="tab-pane fade" id="cardlogall" role="tabpanel" aria-labelledby="card-log-all-tab">
+					{#if box_log_detail.day.length == 0}
+						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
+					{:else}
+						{#each card_log_detail.all as bm}
+							<div class="image-wrapper me-2">
+								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<span class="badge-count">View {bm.seen}</span>
+							</div>
+						{/each}
+					{/if}
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <style>
@@ -82,4 +211,21 @@
 		margin-bottom: 2%;
 		text-align: center;
 	}
+
+	.image-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+    .image-wrapper img {
+      border: 2px solid #ccc; /* Optional: Adds a border around the image */
+    }
+    .badge-count {
+      position: absolute;
+      top: 5px; /* Adjust for spacing */
+      right: 5px; /* Adjust for spacing */
+      background-color: red;
+      color: white;
+      font-size: 0.75rem;
+      padding: 0.25em 0.5em;
+    }
 </style>
