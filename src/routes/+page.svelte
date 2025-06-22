@@ -33,7 +33,7 @@
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="รวบรวมและค้นหาการ์ด Yu-Gi-Oh แปลไทย ว่าแต่ละใบอยู่ในชุดไหนบ้าง หรือชุดแต่ละชุดมีการ์ดอะไรบ้าง" />
 </svelte:head>
 
 <section>
