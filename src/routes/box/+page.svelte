@@ -65,7 +65,7 @@
         Swal.fire({
             text : card.Name,
             imageUrl: card.Pic == '' ? miss_card : card.Pic,
-            imageAlt: "A tall image"
+            imageAlt: card.Name
         });
     }
 </script>
@@ -94,12 +94,12 @@
         <div class="row mt-2">
             <div class="col-3 border">
                 {#if value_boxth != null}
-                    <img src="{value_boxth.img}" class="img-fluid" alt="pic_box">
+                    <img src="{value_boxth.img}" class="img-fluid" alt="pic_box" on:error="{() => value_boxth.img = miss_card}">
                 {/if}
             </div>
             <div class="col-9 border" >
                 {#each cardItem as card}
-                    <input type="image" on:click={() => showCard(card)} src="{card.Pic == '' ? miss_card : card.Pic}" class="img-fluid p-1" style="width: 10%;" alt="card_name" title="{card.Name}" on:error="{() => card.Pic = miss_card}"/>
+                    <input type="image" on:click={() => showCard(card)} src="{card.Pic == '' ? miss_card : card.Pic}" class="img-fluid p-1" style="width: 10%;" alt="{card.Name}" title="{card.Name}" on:error="{() => card.Pic = miss_card}"/>
                     
                 {/each}
             </div>
