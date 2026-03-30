@@ -1,7 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
+	import defaultPic from '$lib/images/miss_card.jpg';
 
 	let log = []
+	const handleImgError = (event) => {
+		event.target.src = defaultPic;
+	};
 	let box_log_detail = {
 		month : [],
 		day : [],
@@ -80,7 +84,7 @@
 					{:else}
 						{#each box_log_detail.day as bm}
 							<div class="image-wrapper me-2">
-								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<img src={bm.Box_Pic} alt={bm.Box_Name} title={bm.Box_Name} class="img-fluid" width="130" height="150" on:error={handleImgError}>
 								<span class="badge-count">View {bm.seen}</span>
 							</div>
 						{/each}
@@ -93,7 +97,7 @@
 					{:else}
 						{#each box_log_detail.month as bm}
 							<div class="image-wrapper me-2">
-								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<img src={bm.Box_Pic} alt={bm.Box_Name} title={bm.Box_Name} class="img-fluid" width="130" height="150" on:error={handleImgError}>
 								<span class="badge-count">View {bm.seen}</span>
 							</div>
 						{/each}
@@ -105,7 +109,7 @@
 					{:else}
 						{#each box_log_detail.all as bm}
 							<div class="image-wrapper me-2">
-								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<img src={bm.Box_Pic} alt={bm.Box_Name} title={bm.Box_Name} class="img-fluid" width="130" height="150" on:error={handleImgError}>
 								<span class="badge-count">View {bm.seen}</span>
 							</div>
 						{/each}
@@ -132,7 +136,7 @@
 					{:else}
 						{#each card_log_detail.day as bm}
 							<div class="image-wrapper me-2">
-								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<img src={bm.Box_Pic} alt={bm.Box_Name} title={bm.Box_Name} class="img-fluid" width="130" height="150" on:error={handleImgError}>
 								<span class="badge-count">View {bm.seen}</span>
 							</div>
 						{/each}
@@ -144,19 +148,19 @@
 					{:else}
 						{#each card_log_detail.month as bm}
 							<div class="image-wrapper me-2">
-								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<img src={bm.Box_Pic} alt={bm.Box_Name} title={bm.Box_Name} class="img-fluid" width="130" height="150" on:error={handleImgError}>
 								<span class="badge-count">View {bm.seen}</span>
 							</div>
 						{/each}
 					{/if}
 				</div>
 				<div class="tab-pane fade" id="cardlogall" role="tabpanel" aria-labelledby="card-log-all-tab">
-					{#if box_log_detail.day.length == 0}
+					{#if card_log_detail.day.length == 0}
 						<p>วันนี้ยังไม่มีใครค้นหาอะไรเลย T.T</p>
 					{:else}
 						{#each card_log_detail.all as bm}
 							<div class="image-wrapper me-2">
-								<img src="{bm.Box_Pic}" alt="{bm.Box_Name}" class="img-fluid" width="130" height="150">
+								<img src={bm.Box_Pic} alt={bm.Box_Name} title={bm.Box_Name} class="img-fluid" width="130" height="150" on:error={handleImgError}>
 								<span class="badge-count">View {bm.seen}</span>
 							</div>
 						{/each}
