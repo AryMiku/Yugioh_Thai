@@ -78,11 +78,11 @@
     <div class="row mt-2">
         {#each cardItem as card}
             <div class="col-3 p-1 border">
-                <input type="image" src="{card.Pic == '' ? miss_card : card.Pic}" on:click={() => showCard(card)} class="img-fluid" alt="pic_box">
+                <input type="image" src="{card.Pic == '' ? miss_card : card.Pic}" on:click={() => showCard(card)} class="img-fluid" alt="{card.Name}" title="{card.Name}" on:error="{() => card.Pic = miss_card}"/>
             </div>
             <div class="col-9 p-1 border" >
                 {#each card.BoxList as box}
-                    <input type="image" src="{box.BoxPic == '' ? miss_card : box.BoxPic}" on:click={() => showBox(box)} class="img-fluid p-1" style="width: 20%;" alt="card_name" title="{box.BoxName}" on:error="{() => card.Pic = miss_card}"/>
+                    <input type="image" src="{box.BoxPic == '' ? miss_card : box.BoxPic}" on:click={() => showBox(box)} class="img-fluid p-1" style="width: 20%;" alt="{box.BoxName}" title="{box.BoxName}" on:error="{() => box.BoxPic = miss_card}"/>
                     
                 {/each}
             </div>
